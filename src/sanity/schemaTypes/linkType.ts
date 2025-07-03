@@ -32,7 +32,7 @@ export const linkType = defineType({
             name: "createdAt",
             title: "Created At",
             type: "datetime",
-            initialValue: () => new Date().toDateString(),
+            initialValue: () => new Date().toISOString(),
             validation: (Rule) => Rule.required().error("Created At is required")
         })
     ]
