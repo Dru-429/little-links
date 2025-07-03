@@ -38,7 +38,7 @@ export function ModeToggle() {
       >
         <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 via-backgorund-500/20 to-accent-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-        <div className="relative flex items-center gap-2 z-10 text-foreground">
+        <div className="relative flex items-center gap-2 z-10 text-foreground font-semibold">
           <div className="relative w-5 h-5 flex items-center justify-center">
             <Sun className={`absolute transition-all duration-700 ease-in-out ${theme === "light" ? "scale-100 rotate-0 opacity-100" : "scale-0 rotate-180 opacity-0"}`} />
             <Moon className={`absolute transition-all duration-700 ease-in-out ${theme === "dark" ? "scale-100 rotate-0 opacity-100" : "scale-0 -rotate-180 opacity-0"}`} />
@@ -65,7 +65,7 @@ export function ModeToggle() {
 
       {isOpen && (
         <motion.div 
-          className="absolute right-0 z-50 mt-2 w-56 backdrop-blur-2xl bg-primary/60 border border-primary/70 rounded-2xl shadow-2xl shadow-black/20 overflow-hidden"
+          className="absolute right-0 z-50 mt-2 w-56 backdrop-blur-2xl bg-primary/30 border border-primary/74 rounded-2xl shadow-2xl shadow-black/20 overflow-hidden"
           initial={{ opacity: 0, scale: 0,}}
           animate={{ opacity: 1, scale: 1, }}
           exit={{ opacity: 0, scale: 0, }} 
@@ -74,7 +74,7 @@ export function ModeToggle() {
           {/* Header */}
           <div className="px-4 py-3 border-b border-secondary/10 flex items-center gap-2">
             <Palette className="w-4 h-4 text-foreground/80" />
-            <span className="text-sm font-semibold text-foreground/90">Choose Theme</span>
+            <span className="text-sm font-bold text-foreground/90">Choose Theme</span>
           </div>
 
           {/* Theme Options */}
@@ -118,12 +118,12 @@ export function ModeToggle() {
                     <div className="flex-1">
                       <div
                         className={`font-medium transition-colors duration-300 ${
-                          isSelected ? "text-foreground" : "text-foreground/80 group-hover:text-foreground"
+                          isSelected ? "text-foreground" : "text-foreground/80 group-hover:text-foreground font-semibold"
                         }`}
                       >
                         {option.label}
                       </div>
-                      <div className="text-xs text-foreground/50 group-hover:text-foreground/70 transition-colors duration-300">
+                      <div className="text-xs text-foreground/50 group-hover:text-foreground/70 transition-colors duration-300 font-semibold">
                         {option.description}
                       </div>
                     </div>
