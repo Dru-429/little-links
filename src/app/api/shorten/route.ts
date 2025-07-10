@@ -40,7 +40,7 @@ export async function POST(
         await client.create(doc)
 
         return NextResponse.json(
-            {success: true, message: 'Short link Generated & saved'},
+            { success: true, message: 'Short link Generated & saved' },
             { status: 500 }
         )
 
