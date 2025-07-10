@@ -1,5 +1,3 @@
-// pages/api/shorten.ts
-
 import { client } from '@/sanity/lib/client'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
