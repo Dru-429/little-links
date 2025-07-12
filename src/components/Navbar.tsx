@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { ModeToggle } from "./ModeToggle"
 
 export default function Navbar() {
   return (
@@ -15,6 +16,7 @@ export default function Navbar() {
               href="/"
               className="text-2xl font-bold text-foreground transition-all duration-300"
             >
+
               Little Links
             </Link>
           </div>
@@ -22,30 +24,28 @@ export default function Navbar() {
           {/* Navigation Links */}
           <div className="hidden md:block">
             <div className="flex items-center space-x-8">
-              <Link href="/" className="text-foreground hover:text-primary font-medium transition-colors relative group">
-                Home
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+              <Link href="/" className="text-foreground hover:text-accent font-semibold transition-colors relative group">
+                Generate
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
               </Link>
               <Link
                 href="/stats"
-                className="text-muted-foreground hover:text-primary px-4 py-2 text-base font-medium transition-colors duration-300"
+                className="text-foreground hover:text-accent font-semibold transition-colors relative group"
               >
                 Stats
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
               </Link>
-              <Link
-                href="/about"
-                className="text-muted-foreground hover:text-primary px-4 py-2 text-base font-medium transition-colors duration-300"
-              >
-                About
-              </Link>
+
+              <ModeToggle />
+
               <Button
-                variant="outline"
+                variant="secondary"
                 size="default"
                 asChild
                 className="ml-4 bg-transparent border-2 rounded-xl hover:bg-primary/10 transition-all duration-300"
               >
                 <Link
-                  href="https://github.com"
+                  href="https://github.com/Dru-429/little-links"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"
@@ -54,6 +54,7 @@ export default function Navbar() {
                   <span className="hidden lg:inline">GitHub</span>
                 </Link>
               </Button>
+
             </div>
           </div>
 
