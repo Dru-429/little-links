@@ -41,7 +41,7 @@ export default function Form() {
                 throw new Error(result.message || "Something went wrong");
             }
 
-            toast.success("Short URL created successfully 🎉");
+            toast.success("Short URL created successfully");
 
             console.log("Shortened URL created:", result);
         } catch (error) {
