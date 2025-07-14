@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Navbar from "@/components/Navbar"
+import { toast } from "sonner"
 
 interface LinkStats {
   shortSlug: string
@@ -64,25 +65,21 @@ export default function StatsPage() {
 
       if (data.success && data.stats) {
         setStats(data.stats)
-        toast({
-          title: "Stats loaded successfully!",
-          description: "Link statistics have been retrieved.",
-        })
+        toast.success(
+          "Stats loaded successfully!",
+          { description: "Link statistics have been retrieved." }
+        )
+        
       } else {
         setError(data.message || "Failed to fetch stats")
-        toast({
-          title: "Link not found",
-          description: data.message || "The shortened link could not be found.",
-          variant: "destructive",
-        })
+        toast.error(
+          "Link not found",
+          { description: `${data.message}` || "The Shortened link could not be found" }
+        )
       }
     } catch (err) {
       setError("Failed to fetch stats. Please try again.")
-      toast({
-        title: "Error",
-        description: "Failed to fetch link statistics.",
-        variant: "destructive",
-      })
+      toast.error("Failed to fetch link stats")
       console.log(err)
     } finally {
       setIsLoading(false)
@@ -93,17 +90,17 @@ export default function StatsPage() {
     try {
       await navigator.clipboard.writeText(text)
       setCopied(true)
-      toast({
-        title: "Copied to clipboard!",
-        description: "The URL has been copied.",
-      })
+      toast.success(
+        "Copied to clipboard !",
+        { description: "The URL has been copied." }
+      )
       setTimeout(() => setCopied(false), 2000)
     } catch (err) {
-      toast({
-        title: "Failed to copy",
-        description: "Please copy the URL manually.",
-        variant: "destructive",
-      })
+      toast.error(
+        "Failed to copy",
+        { description: "Please copy the URL manually." }
+      )
+      
       console.log(err)
     }
   }
