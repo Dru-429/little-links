@@ -69,7 +69,7 @@ export default function StatsPage() {
           "Stats loaded successfully!",
           { description: "Link statistics have been retrieved." }
         )
-        
+
       } else {
         setError(data.message || "Failed to fetch stats")
         toast.error(
@@ -127,30 +127,22 @@ export default function StatsPage() {
       <Navbar />
 
       <main className="pt-32 pb-20">
-        <div className="w-[90%] mx-auto px-6 lg:px-8 flex flex-col gap-4 md:flex-row bg-red-600 justify-between items-center ">
-          {/* Left  Section */}
-          <div className="text-center space-y-8 mb-16">
-            <div className="space-y-4">
-              <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight tracking-tight">
-                Link <span className="text-primary">Statistics</span>
-              </h1>
-              <p className="text-xl text-muted-foreground font-light max-w-2xl mx-auto leading-relaxed">
-                Track the performance of your shortened links with detailed analytics and insights.
-              </p>
-            </div>
+        <div className="w-[90%] mx-auto px-6 lg:px-8">
+          {/* hero  Section */}
+          <div className="text-center space-y-5 mb-16">
 
             {/* Search Section */}
-            <div className="mb-16">
+            <div className="">
               <Card className="border-0 shadow-2xl bg-card/90 backdrop-blur-xl">
-                <CardHeader className="text-center pb-6">
+                <CardHeader className="text-center">
                   <CardTitle className="text-2xl font-bold text-foreground mb-2">Check Your Link Stats</CardTitle>
                   <p className="text-muted-foreground font-light">
                     Paste your shortened link here to view detailed statistics
                   </p>
                 </CardHeader>
-                <CardContent className="p-8">
-                  <form onSubmit={handleSearch} className="space-y-6">
-                    <div className="relative">
+                <CardContent className="p-8 pt-0">
+                  <form onSubmit={handleSearch} className="space-y-6 md:flex gap-2 w-full">
+                    <div className="relative md:w-[65%] w-auto">
                       <Input
                         type="text"
                         placeholder="Paste your link here (e.g., https://ltl.ink/abc123 or just abc123)"
@@ -163,7 +155,7 @@ export default function StatsPage() {
                     </div>
                     <Button
                       type="submit"
-                      className="w-full h-14 text-base font-semibold rounded-2xl bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 shadow-lg hover:shadow-xl"
+                      className="w-auto md:w-[30%] h-14 text-base font-semibold rounded-2xl bg-gradient-to-r from-primary to-secondary hover:from-primary hover:to-primary hover:font-bold hover:text-foreground transition-all duration-200 shadow-lg hover:shadow-xl text-card-foreground/80 cursor-pointer"
                       disabled={isLoading}
                     >
                       {isLoading ? (
@@ -183,9 +175,8 @@ export default function StatsPage() {
               </Card>
             </div>
           </div>
-          
-          <div>
 
+          <div className="border-0 shadow-2xl bg-card/90 backdrop-blur-xl">
             {/* Error State */}
             {error && (
               <div className="mb-16">
@@ -299,7 +290,16 @@ export default function StatsPage() {
             {/* Empty State */}
             {!stats && !error && !isLoading && (
               <div className="text-center py-16">
-                <div className="space-y-6">
+
+                <div className="space-y-4">
+                  <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight tracking-tight">
+                    Link <span className="text-primary">Statistics</span>
+                  </h1>
+                  <p className="text-xl text-muted-foreground font-light max-w-2xl mx-auto leading-relaxed">
+                    Track the performance of your shortened links with detailed analytics and insights.
+                  </p>
+                </div>
+                {/* <div className="space-y-6">
                   <div className="w-24 h-24 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
                     <BarChart3 className="w-12 h-12 text-primary" />
                   </div>
@@ -309,7 +309,7 @@ export default function StatsPage() {
                       Enter your shortened link above to view detailed analytics and performance metrics.
                     </p>
                   </div>
-                </div>
+                </div> */}
               </div>
             )}
           </div>
