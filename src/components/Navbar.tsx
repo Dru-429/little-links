@@ -21,13 +21,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const scrollToSection = (id: string) => {
-    const section = document.getElementById(id)
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" })
-      setMenuOpen(false)
-    }
-  }
 
   return (
     <nav
@@ -51,15 +44,21 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
-            <button onClick={() => scrollToSection("generate")} className="hover:text-accent font-semibold transition-colors relative group">
+            <Link 
+              href='/'
+              className="hover:text-accent font-semibold transition-colors relative group"
+            >
               Generate
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
-            </button>
+            </Link>
 
-            <button onClick={() => scrollToSection("stats")} className="hover:text-accent font-semibold transition-colors relative group">
+            <Link 
+              href="/stats"
+              className="hover:text-accent font-semibold transition-colors relative group"
+            >
               Stats
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
-            </button>
+            </Link>
 
             <ModeToggle />
 
@@ -91,8 +90,20 @@ export default function Navbar() {
             className="md:hidden px-6 pb-4"
           >
             <div className="flex flex-col gap-4">
-              <button onClick={() => scrollToSection("generate")} className="text-left text-foreground hover:text-accent font-medium">Generate</button>
-              <button onClick={() => scrollToSection("stats")} className="text-left text-foreground hover:text-accent font-medium">Stats</button>
+              <Link
+               href='/'
+               onClick={() => setMenuOpen(false)} 
+               className="text-left text-foreground hover:text-accent font-medium"
+              >
+                Generate
+              </Link>
+              <Link
+               href='/stats'
+               onClick={() => setMenuOpen(false) } 
+               className="text-left text-foreground hover:text-accent font-medium"
+              >
+                Stats
+              </Link>
               <Link href="https://github.com/Dru-429/little-links" target="_blank" className="text-left text-foreground hover:text-accent font-medium">GitHub</Link>
             </div>
           </motion.div>
