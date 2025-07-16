@@ -69,7 +69,7 @@ export default function StatsPage() {
           "Stats loaded successfully!",
           { description: "Link statistics have been retrieved." }
         )
-        console.log(data)
+        console.log(data.stats)
       } else {
         setError(data.message || "Failed to fetch stats")
         toast.error(
@@ -199,9 +199,9 @@ export default function StatsPage() {
 
             {/* Stats Display */}
             {stats && (
-              <div className="space-y-8">
+              <div className="space-y-8 p-10">
                 {/* Overview Card */}
-                <Card className="border-0 shadow-2xl bg-card/90 backdrop-blur-xl">
+                <Card className="border-0 shadow-xl bg-gradient-to-br from-primary/20 to-secondary/40">
                   <CardHeader>
                     <CardTitle className="text-2xl font-bold text-foreground flex items-center gap-3">
                       <LinkIcon className="w-6 h-6 text-primary" />
@@ -214,8 +214,8 @@ export default function StatsPage() {
                       <div>
                         <label className="text-sm font-medium text-muted-foreground">Shortened Link</label>
                         <div className="w-full flex flex-col md:flex-row justify-between items-center gap-4">
-                          <div className="md:w-[70%] flex items-center gap-4 p-4 bg-background/50 rounded-xl border border-border/30">
-                            <code className="flex-1 font-mono text-primary">https://ltl.ink/{stats.shortSlug}</code>
+                          <div className="md:w-[70%] flex items-center gap-4 p-4 bg-background/90 rounded-xl border border-border">
+                            <code className="flex-1 font-mono text-foreground">https://localhost:3000/{stats.shortSlug}</code>
                             <Button
                               onClick={() => copyToClipboard(`https://localhost:3000/${stats.shortSlug}`)}
                               variant="outline"
@@ -230,13 +230,13 @@ export default function StatsPage() {
                           <div className="md:w-[30%] flex sm:flex-row gap-4 justify-center divide-x-2 ">
                             <Button
                               onClick={resetSearch}
-                              className="p-4 font-bold  h-full w-[45%]"
+                              className="p-4 font-bold h-full w-[45%] bg-accent hover:bg-red-500 hover:scale-105 transition-all duration-150"
                             >
                               Check Another Link
                             </Button>
                             <Button
                               onClick={() => window.open(`https://localhost:3000/${stats.shortSlug}`, "_blank")}
-                              className="p-4 font-bold bg-accent/50 hover:bg-accent/70 h-full w-[45%]"
+                              className="p-4 font-bold bg-accent hover:bg-red-500  transition-all duration-150 hover:scale-105 h-full w-[45%]"
                             >
                               Visit Link
                             </Button>
@@ -247,42 +247,42 @@ export default function StatsPage() {
                     </div>
 
                     {/* Original URL */}
-                    <div className="space-y-2">
+                    {/* <div className="space-y-2">
                       <label className="text-sm font-medium text-muted-foreground">Original URL</label>
                       <div className="p-4 bg-background/50 rounded-xl border border-border/30">
                         <p className="text-foreground break-all">{stats.originalUrl}</p>
                       </div>
-                    </div>
+                    </div> */}
                   </CardContent>
                 </Card>
 
                 {/* Stats Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {/* Click Count */}
-                  <Card className="border-0 shadow-xl bg-gradient-to-br from-primary/10 to-secondary/10">
+                  <Card className="border-0 shadow-xl bg-gradient-to-br from-primary/20 to-secondary/40">
                     <CardContent className="p-8 text-center">
                       <div className="space-y-4">
                         <div className="w-16 h-16 mx-auto bg-primary/20 rounded-2xl flex items-center justify-center">
-                          <MousePointer className="w-8 h-8 text-primary" />
+                          <MousePointer className="w-8 h-8 text-foreground" />
                         </div>
                         <div>
                           <p className="text-3xl font-bold text-foreground">{stats.clicks.toLocaleString()}</p>
-                          <p className="text-muted-foreground font-light">Total Clicks</p>
+                          <p className="text-muted-foreground font-light text-xl">Total Clicks</p>
                         </div>
                       </div>
                     </CardContent>
                   </Card>
 
                   {/* Created Date */}
-                  <Card className="border-0 shadow-xl bg-gradient-to-br from-accent/10 to-secondary/10">
+                  <Card className="border-0 shadow-xl bg-gradient-to-br from-primary/20 to-secondary/40">
                     <CardContent className="p-8 text-center">
                       <div className="space-y-4">
-                        <div className="w-16 h-16 mx-auto bg-accent/20 rounded-2xl flex items-center justify-center">
-                          <Calendar className="w-8 h-8 text-accent" />
+                        <div className="w-16 h-16 mx-auto bg-primary/20 rounded-2xl flex items-center justify-center">
+                          <Calendar className="w-8 h-8 text-foreground" />
                         </div>
                         <div>
                           <p className="text-lg font-semibold text-foreground">{formatDate(stats.createdAt)}</p>
-                          <p className="text-muted-foreground font-light">Created On</p>
+                          <p className="text-muted-foreground font-light text-xl">Created On</p>
                         </div>
                       </div>
                     </CardContent>
