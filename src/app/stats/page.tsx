@@ -69,7 +69,7 @@ export default function StatsPage() {
           "Stats loaded successfully!",
           { description: "Link statistics have been retrieved." }
         )
-
+        console.log(data)
       } else {
         setError(data.message || "Failed to fetch stats")
         toast.error(
@@ -135,7 +135,7 @@ export default function StatsPage() {
             <div className="">
               <Card className="border-0 shadow-2xl bg-card/90 backdrop-blur-xl">
                 <CardHeader className="text-center">
-                  <CardTitle className="text-2xl font-bold text-foreground mb-2">Check Your Link Stats</CardTitle>
+                  <CardTitle className="text-3xl font-bold text-foreground ">Check Your Link Stats</CardTitle>
                   <p className="text-muted-foreground font-light">
                     Paste your shortened link here to view detailed statistics
                   </p>
@@ -176,7 +176,7 @@ export default function StatsPage() {
             </div>
           </div>
 
-          <div className="border-0 shadow-2xl bg-card/90 backdrop-blur-xl">
+          <div className="border-0 shadow-2xl bg-card/90 backdrop-blur-xl rounded-2xl">
             {/* Error State */}
             {error && (
               <div className="mb-16">
@@ -211,17 +211,38 @@ export default function StatsPage() {
                   <CardContent className="space-y-6">
                     {/* Short Link */}
                     <div className="space-y-2">
-                      <label className="text-sm font-medium text-muted-foreground">Shortened Link</label>
-                      <div className="flex items-center gap-3 p-4 bg-background/50 rounded-xl border border-border/30">
-                        <code className="flex-1 font-mono text-primary">https://ltl.ink/{stats.shortSlug}</code>
-                        <Button
-                          onClick={() => copyToClipboard(`https://ltl.ink/${stats.shortSlug}`)}
-                          variant="outline"
-                          size="sm"
-                          className="bg-transparent"
-                        >
-                          {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                        </Button>
+                      <div>
+                        <label className="text-sm font-medium text-muted-foreground">Shortened Link</label>
+                        <div className="w-full flex flex-col md:flex-row justify-between items-center gap-4">
+                          <div className="md:w-[70%] flex items-center gap-4 p-4 bg-background/50 rounded-xl border border-border/30">
+                            <code className="flex-1 font-mono text-primary">https://ltl.ink/{stats.shortSlug}</code>
+                            <Button
+                              onClick={() => copyToClipboard(`https://localhost:3000/${stats.shortSlug}`)}
+                              variant="outline"
+                              size="sm"
+                              className="bg-transparent"
+                            >
+                              {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                            </Button>
+                          </div>
+
+                          {/* Action Buttons */}
+                          <div className="md:w-[30%] flex sm:flex-row gap-4 justify-center divide-x-2 ">
+                            <Button
+                              onClick={resetSearch}
+                              className="p-4 font-bold  h-full w-[45%]"
+                            >
+                              Check Another Link
+                            </Button>
+                            <Button
+                              onClick={() => window.open(`https://localhost:3000/${stats.shortSlug}`, "_blank")}
+                              className="p-4 font-bold bg-accent/50 hover:bg-accent/70 h-full w-[45%]"
+                            >
+                              Visit Link
+                            </Button>
+                          </div>
+                        </div> 
+
                       </div>
                     </div>
 
@@ -268,22 +289,6 @@ export default function StatsPage() {
                   </Card>
                 </div>
 
-                {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button
-                    onClick={resetSearch}
-                    variant="outline"
-                    className="bg-transparent border-2 rounded-xl hover:bg-primary/10 transition-all duration-300"
-                  >
-                    Check Another Link
-                  </Button>
-                  <Button
-                    onClick={() => window.open(`https://ltl.ink/${stats.shortSlug}`, "_blank")}
-                    className="bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 rounded-xl transition-all duration-300"
-                  >
-                    Visit Link
-                  </Button>
-                </div>
               </div>
             )}
 

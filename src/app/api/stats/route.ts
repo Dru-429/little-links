@@ -29,7 +29,7 @@ export async function GET(req: Request) {
         message: 'Stats fetched successfully',
         stats: {
           shortSlug: stats.shortSlug,
-          originalUrl: stats.originalUrl,
+          originalUrl: stats.originalURL,
           clicks: stats.clicks,
           createdAt: stats.createdAt
         }
